@@ -122,7 +122,7 @@
         margin: 15px 0 12px 0; /* 减小上下间距 */
         display: flex;
         flex-wrap: wrap;
-        gap: 8px; /* 减小图标之间的间距 */
+        gap: 4px; /* 减小图标之间的间距 */
       }
       
       .social-icons a {
@@ -326,7 +326,7 @@
             {% endif %}
             
             {% if site.affiliation %}
-            <div class="affiliation">
+            <div class="ENCODE Lab, Westlake University">
               <a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a>
             </div>
             {% endif %}
@@ -369,9 +369,9 @@
           </div>
           
           <!-- 个人简介区域 -->
-          <div class="bio-content">
+          <!-- <div class="bio-content">
             {{ site.bio | default: "这里可以添加个人简介。您可以在_config.yml中配置bio变量，或者直接在index.md中添加内容。" }}
-          </div>
+          </div> -->
         </div>
         
         <!-- 右侧：头像 -->
