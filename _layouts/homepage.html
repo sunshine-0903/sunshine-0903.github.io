@@ -117,86 +117,79 @@
         margin: 8px 0 20px 0; /* 增加与社交图标的间距 */
       }
       
-      /* 社交图标样式 - 去掉背景框，悬停下划线 */
-      .social-icons {
-        margin: 15px 0 12px 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; /* 增加间距 */
-      }
-      
-      .social-icons a {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        color: #555;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-        padding: 4px 0; /* 只保留垂直内边距 */
-        background: none; /* 去掉背景 */
-        border-radius: 0; /* 去掉圆角 */
-        position: relative; /* 为下划线做准备 */
-      }
-      
-      /* 移除悬停时的背景色变换 */
-      .social-icons a:hover {
-        background-color: transparent; /* 保持透明背景 */
-        color: #2c82c9; /* 悬停时变色 */
-        transform: none; /* 去掉上浮效果 */
-      }
-      
-      /* 下划线效果 */
-      .social-icons a::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #2c82c9;
-        transition: width 0.3s ease;
-      }
-      
-      .social-icons a:hover::after {
-        width: 100%;
-      }
-      
-      .social-icons i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-        color: #666; /* 图标使用深灰色 */
-      }
-      
-      /* 不同社交图标的特定颜色 */
-      .social-icons a:hover i {
-        color: #2c82c9; /* 悬停时图标变色 */
-      }
-      
-      .social-icons a:nth-child(1):hover, 
-      .social-icons a:nth-child(1):hover i { color: #4285F4; } /* Google Scholar */
-      
-      .social-icons a:nth-child(2):hover, 
-      .social-icons a:nth-child(2):hover i { color: #6c757d; } /* CV */
-      
-      .social-icons a:nth-child(3):hover, 
-      .social-icons a:nth-child(3):hover i { color: #333; } /* GitHub */
-      
-      .social-icons a:nth-child(4):hover, 
-      .social-icons a:nth-child(4):hover i { color: #0077b5; } /* LinkedIn */
-      
-      .social-icons a:nth-child(5):hover, 
-      .social-icons a:nth-child(5):hover i { color: #000; } /* Twitter */
-      
-      .social-icons a:nth-child(6):hover, 
-      .social-icons a:nth-child(6):hover i { color: #d44638; } /* Email */
-      
-      /* 更新下划线颜色 */
-      .social-icons a:nth-child(1):hover::after { background-color: #4285F4; }
-      .social-icons a:nth-child(2):hover::after { background-color: #6c757d; }
-      .social-icons a:nth-child(3):hover::after { background-color: #333; }
-      .social-icons a:nth-child(4):hover::after { background-color: #0077b5; }
-      .social-icons a:nth-child(5):hover::after { background-color: #000; }
-      .social-icons a:nth-child(6):hover::after { background-color: #d44638; }
+   /* 社交图标样式 - 去掉背景框，更紧凑 */
+        .social-icons {
+            margin: 12px 0 10px 0; /* 减小上下间距 */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; /* 减小间距 */
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 0.95rem; /* 减小文字大小 */
+            transition: all 0.2s ease;
+            padding: 0; /* 去掉内边距 */
+            background: none; /* 去掉背景 */
+            border-radius: 0; /* 去掉圆角 */
+            position: relative;
+        }
+        
+        .social-icons a:hover {
+            background-color: transparent; /* 保持透明背景 */
+            color: #2c82c9;
+            transform: none; /* 去掉上浮效果 */
+        }
+        
+        /* 下划线效果 */
+        .social-icons a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px; /* 更细的下划线 */
+            bottom: -2px; /* 调整位置 */
+            left: 0;
+            background-color: #2c82c9;
+            transition: width 0.3s ease;
+        }
+        
+        .social-icons a:hover::after {
+            width: 100%;
+        }
+        
+        .social-icons i {
+            margin-right: 5px; /* 减小图标与文字的间距 */
+            font-size: 1rem; /* 减小图标大小 */
+            color: #666;
+        }
+        
+        /* 不同社交图标的特定颜色 - 更新 */
+        .social-icons a:nth-child(1):hover { color: #4285F4; }
+        .social-icons a:nth-child(1):hover i { color: #4285F4; }
+        .social-icons a:nth-child(1):hover::after { background-color: #4285F4; }
+        
+        .social-icons a:nth-child(2):hover { color: #6c757d; }
+        .social-icons a:nth-child(2):hover i { color: #6c757d; }
+        .social-icons a:nth-child(2):hover::after { background-color: #6c757d; }
+        
+        .social-icons a:nth-child(3):hover { color: #333; }
+        .social-icons a:nth-child(3):hover i { color: #333; }
+        .social-icons a:nth-child(3):hover::after { background-color: #333; }
+        
+        .social-icons a:nth-child(4):hover { color: #0077b5; }
+        .social-icons a:nth-child(4):hover i { color: #0077b5; }
+        .social-icons a:nth-child(4):hover::after { background-color: #0077b5; }
+        
+        .social-icons a:nth-child(5):hover { color: #000; }
+        .social-icons a:nth-child(5):hover i { color: #000; }
+        .social-icons a:nth-child(5):hover::after { background-color: #000; }
+        
+        .social-icons a:nth-child(6):hover { color: #d44638; }
+        .social-icons a:nth-child(6):hover i { color: #d44638; }
+        .social-icons a:nth-child(6):hover::after { background-color: #d44638; }
       
       /* 个人简介区域 */
       .bio-content {
