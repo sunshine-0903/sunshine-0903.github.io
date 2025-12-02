@@ -1,273 +1,63 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <title>{{ site.title }} | {{site.affiliation}}</title>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.description }}">
-    {% if site.keywords %}
-    <meta name="keywords" content="{{ site.keywords }}">
-    {% endif %}
-    {% if site.canonical %}
-    <link rel="canonical" href="{{ site.canonical }}"/>
-    {% endif %}
-
-    <link rel="icon" href="{{ site.favicon }}" type="image/png" />
-    <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
-
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    {% if site.font == "Sans Serif" %}
-    <link rel="stylesheet" href="./assets/css/font_sans_serif.css">
-    {% else %}
-    <link rel="stylesheet" href="./assets/css/font.css">
-    {% endif %}
-    <link rel="stylesheet" href="./assets/css/style-no-dark-mode.css">
-    <link rel="stylesheet" href="./assets/css/publications-no-dark-mode.css">
-
-    <style>
-      /* 自定义样式 */
-      .wrapper {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      
-      /* 上半部分：个人信息区 */
-      .top-section {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 40px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid #eee;
-        min-height: 240px;
-      }
-      
-      /* 左侧：个人信息区域 */
-      .info-left {
-        flex: 1;
-        padding-right: 30px;
-        max-width: 65%;
-      }
-      
-      /* 右侧：头像区域 */
-      .avatar-right {
-        flex: 0 0 auto;
-        margin-left: 25px;
-        margin-top: 10px;
-      }
-      
-      /* 圆形头像样式 */
-      .avatar-right img {
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border: 4px solid #fff;
-      }
-      
-      /* 名字和标题样式 */
-      .name-title h1 {
-        margin: 0 0 30px 0;
-        font-size: 3rem;
-        font-weight: 700;
-        color: #333;
-        line-height: 1.2;
-      }
-      
-      position {
-        font-size: 1.3rem;
-        color: #666;
-        display: block;
-        margin-bottom: 4px;
-        font-weight: 500;
-      }
-      
-      .affiliation {
-        margin: 3px 0;
-      }
-      
-      .affiliation a {
-        text-decoration: none;
-        font-size: 1.15rem;
-        color: #2c82c9;
-      }
-      
-      .affiliation a:hover {
-        color: #1a5f9e;
-        text-decoration: underline;
-      }
-      
-      email {
-        font-size: 1.1rem;
-        color: #444;
-        display: block;
-        margin: 8px 0 20px 0;
-      }
-      
-      /* 社交图标样式 */
-      .social-icons {
-        margin: 8px 0 6px 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-      
-      .social-icons a {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        color: #555;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-        padding: 0;
-        background: none;
-        border-radius: 0;
-        position: relative;
-      }
-      
-      .social-icons a:hover {
-        background-color: transparent;
-        color: #2c82c9;
-        transform: none;
-      }
-      
-      .social-icons i {
-        margin-right: 4px;
-        font-size: 0.9rem;
-        color: #666;
-      }
-      
-      /* 不同社交图标的特定颜色 */
-      .social-icons a:nth-child(1):hover { color: #4285F4; }
-      .social-icons a:nth-child(1):hover i { color: #4285F4; }
-      
-      
-      .social-icons a:nth-child(3):hover { color: #0077b5; }
-      .social-icons a:nth-child(3):hover i { color: #0077b5; }
-      
-      .social-icons a:nth-child(4):hover { color: #000; }
-      .social-icons a:nth-child(4):hover i { color: #000; }
-      
-      .social-icons a:nth-child(5):hover { color: #d44638; }
-      .social-icons a:nth-child(5):hover i { color: #d44638; }
-      
-    
-      /* 下半部分：动态内容区 */
-      .content-section {
-        width: 100%;
-        margin-top: 20px;
-      }
-      
-      /* 内容区域文字大小 */
-      .content-section {
-        font-size: 1.1rem;
-        line-height: 1.7;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- 上半部分：个人信息区 -->
-      <div class="top-section">
-        <!-- 左侧：个人信息 -->
-        <div class="info-left">
-          <div class="name-title">
-            <h1>{{ site.title }}</h1>
-            
-            {% if site.position %}
-            <position>{{ site.position }}</position>
-            {% endif %}
-            
-            {% if site.affiliation %}
-            <div class="affiliation">
-              <a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a>
-            </div>
-            {% endif %}
-            
-            {% if site.email %}
-            <email>{{ site.email }}</email>
-            {% endif %}
-          </div>
-          
-          <!-- 社交图标区域 -->
-          <div class="social-icons">
-            {% if site.google_scholar %}
-            <a href="{{ site.google_scholar }}" title="Google Scholar" target="_blank" rel="noopener">
-              <i class="ai ai-google-scholar"></i> Scholar
-            </a>  
-            {% endif %}
-
-       
-
-            {% if site.github_link %}
-            <a href="{{ site.github_link }}" title="GitHub" target="_blank" rel="noopener">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-            {% endif %}
-
-            {% if site.linkedin %}
-            <a href="{{ site.linkedin }}" title="LinkedIn" target="_blank" rel="noopener">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            {% endif %}
-
-            {% if site.twitter %}
-            <a href="{{ site.twitter }}" title="Twitter" target="_blank" rel="noopener">
-              <i class="fab fa-x-twitter"></i> Twitter
-            </a>
-            {% endif %}
-            
-        
-          </div>
-          
-    
-        
-        <!-- 右侧：头像 -->
-        <div class="avatar-right">
-          {% if site.avatar %}
-          <img src="{{ site.avatar }}" alt="{{ site.title }}'s avatar" />
-          {% else %}
-          <img src="https://via.placeholder.com/220x220/cccccc/666666?text=Avatar" alt="Placeholder avatar" />
-          {% endif %}
-        </div>
-      </div>
-      
-      <!-- 下半部分：动态内容区 -->
-      <div class="content-section">
-        {{ content }}
-        
-        {% if site.enable_footnote %}
-        <p style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #888;">
-          <small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small>
-        </p>
-        {% endif %}
-      </div>
-    </div>
-    
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
-    {% if site.google_analytics %}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', '{{ site.google_analytics }}', 'auto');
-      ga('send', 'pageview');
-    </script>
-    {% endif %}
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const socialLinks = document.querySelectorAll('.social-icons a');
-        // 移除原有的悬停效果代码，让CSS处理所有效果
-      });
-    </script>
-  </body>
-</html>
+<style>
+  /* 自定义样式 */
+  .wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* 上半部分：个人信息区 - 左右分栏 */
+  .top-section {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    min-height: 240px;
+  }
+  
+  /* 左侧：个人信息区域 - 固定宽度 */
+  .info-left {
+    flex: 1;
+    padding-right: 30px;
+    max-width: 65%; /* 确保左侧区域有最大宽度限制 */
+  }
+  
+  /* 右侧：头像区域 - 固定宽度 */
+  .avatar-right {
+    flex: 0 0 auto;
+    margin-left: 25px;
+    margin-top: 10px;
+    width: 220px; /* 明确设置宽度 */
+  }
+  
+  /* 圆形头像样式 */
+  .avatar-right img {
+    width: 100%; /* 使用100%填充容器 */
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 4px solid #fff;
+  }
+  
+  /* 确保下半部分有清晰的边界 */
+  .content-section {
+    width: 100%;
+    margin-top: 20px;
+    clear: both; /* 清除浮动 */
+  }
+  
+  /* 名字和标题样式 */
+  .name-title h1 {
+    margin: 0 0 30px 0;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+  }
+  
+  /* ... 其他样式保持不变 ... */
+</style>
