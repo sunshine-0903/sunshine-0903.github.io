@@ -1,110 +1,93 @@
-<div class="wrapper">
-  <!-- 替换这个部分 -->
-  <div class="row mt-4">
-    <div class="col">
-      <div class="card border-0 shadow-sm bg-white">
-        <div class="card-body p-5">
-          <div class="row">
-            <div class="col">
-              {% if site.avatar %}
-              <!-- 大屏幕：头像浮动在右侧 -->
-              <div class="figure float-right ml-4 mb-4 d-none d-md-block">
-                <img 
-                  src="{{ site.avatar }}" 
-                  class="figure-img img-fluid img-thumbnail" 
-                  style="height: 200px;"
-                  data-toggle="tooltip" 
-                  data-placement="top" 
-                  title="{{ site.portrait_caption | default: 'Avatar' }}">
-              </div>
-              {% endif %}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <title>{{ site.title }} | {{site.affiliation}}</title>
 
-              <div class="d-flex">
-                <div class="h1 font-weight-normal">
-                  {{ site.title }}
-                  {% if site.secondary_name %}
-                  <small>{{ site.secondary_name }}</small>
-                  {% endif %}
-                </div>
-                {% if site.avatar %}
-                <!-- 小屏幕：圆形小头像 -->
-                <div class="ml-auto d-md-none">
-                  <a target="_blank" href="{{ site.avatar }}">
-                    <img src="{{ site.avatar }}" class="rounded-circle" style="height: 48px;" alt="Portrait">
-                  </a>
-                </div>
-                {% endif %}
-              </div>
-              
-              <div class="text-profile-position">
-                {% if site.position %}
-                <div class="position-item">
-                  {% if site.affiliation_logo %}
-                  <img src="{{ site.affiliation_logo }}" alt="Logo" class="inline-badge"/>
-                  {% endif %}
-                  {{ site.position }}
-                  {% if site.affiliation %}
-                  , {{ site.affiliation }}
-                  {% endif %}
-                </div>
-                {% endif %}
-              </div>
-              
-              <div class="text-profile-bio mt-3">
-                {{ site.bio | default: site.description }}
-              </div>
-              
-              {% if site.cv_link %}
-              <a target="_blank" href="{{ site.cv_link }}" class="mt-2 d-inline-block">
-                <i class="fas fa-file-alt"></i> Curriculum Vitae
-              </a>
-              {% endif %}
-            </div>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    {% if site.keywords %}
+    <meta name="keywords" content="{{ site.keywords }}">
+    {% endif %}
+    {% if site.canonical %}
+    <link rel="canonical" href="{{ site.canonical }}"/>
+    {% endif %}
+
+    <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
+    <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
+    <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
+
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    {% if site.font == "Sans Serif" %}
+    <link rel="stylesheet" href="./assets/css/font_sans_serif.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/font.css">
+    {% endif %}
+    {% if site.auto_dark_mode %}
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/publications.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/style-no-dark-mode.css">
+    <link rel="stylesheet" href="./assets/css/publications-no-dark-mode.css">
+    {% endif %}
+
+    <style>
+      .wrapper { max-width: 1100px; margin: 0 auto; padding: 20px; }
+      .top-section { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #eee; min-height: 240px; }
+      .info-left { flex: 1; padding-right: 30px; max-width: 65%; }
+      .avatar-right { flex: 0 0 auto; margin-left: 25px; margin-top: 10px; }
+      .avatar-right img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 4px solid #fff; }
+      .name-title h1 { margin: 0 0 30px 0; font-size: 3rem; font-weight: 700; color: #333; line-height: 1.2; }
+      position { font-size: 1.3rem; color: #666; display: block; margin-bottom: 4px; font-weight: 500; }
+      .affiliation a { text-decoration: none; font-size: 1.15rem; color: #2c82c9; }
+      email { font-size: 1.1rem; color: #444; display: block; margin: 8px 0 20px 0; }
+
+      .social-icons { margin: 8px 0 6px 0; display: flex; flex-wrap: wrap; gap: 20px; }
+      .social-icons a { display: inline-flex; align-items: center; text-decoration: none; color: #555; font-size: 0.9rem; transition: all 0.2s ease; }
+      .social-icons a span { position: relative; display: inline-block; }
+      .social-icons a span::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: currentColor; transition: width 0.3s ease; }
+      .social-icons a:hover span::after { width: 100%; }
+      .social-icons i { margin-right: 4px; font-size: 0.9rem; color: #666; }
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="top-section">
+        <div class="info-left">
+          <div class="name-title">
+            <h1>{{ site.title }}</h1>
+            {% if site.position %}<position>{{ site.position }}</position>{% endif %}
+            {% if site.affiliation %}<div class="affiliation"><a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a></div>{% endif %}
+            {% if site.email %}<email>{{ site.email }}</email>{% endif %}
           </div>
-          
-          <hr />
-          
-          <div class="row">
-            <div class="col">
-              {% if site.email %}
-              <a class="pr-3" href="mailto:{{ site.email | encode_email }}">
-                <i class="fas fa-at"></i> 
-                <span class="email-text">{{ site.email | replace: "@", "(at)" }}</span>
-              </a>
-              {% endif %}
 
-              {% if site.google_scholar %}
-              <a class="pr-3 no-break" target="_blank" href="{{ site.google_scholar }}">
-                <i class="fab fa-google-scholar"></i> Google Scholar
-              </a>
-              {% endif %}
-              
-              {% if site.github_link %}
-              <a class="pr-3 no-break" target="_blank" href="{{ site.github_link }}">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-              {% endif %}
-
-              {% if site.linkedin %}
-              <a class="pr-3 no-break" target="_blank" href="{{ site.linkedin }}">
-                <i class="fab fa-linkedin"></i> LinkedIn
-              </a>
-              {% endif %}
-
-              {% if site.twitter %}
-              <a class="pr-3 no-break" target="_blank" href="{{ site.twitter }}">
-                <i class="fab fa-x-twitter"></i> Twitter
-              </a>
-              {% endif %}
-            </div>
+          <div class="social-icons">
+            {% if site.google_scholar %}<a href="{{ site.google_scholar }}" target="_blank"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
+            {% if site.github_link %}<a href="{{ site.github_link }}" target="_blank"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+            {% if site.linkedin %}<a href="{{ site.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>{% endif %}
+            {% if site.twitter %}<a href="{{ site.twitter }}" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>{% endif %}
           </div>
         </div>
-      </div>        
-    </div>
-  </div>
-  <!-- 结束替换 -->
 
-  <div class="content-section mt-4">
-    {{ content }}
-  </div>
-</div>
+        <div class="avatar-right">
+          {% if site.avatar %}
+          <img src="{{ site.avatar }}" alt="{{ site.title }}'s avatar" />
+          {% else %}
+          <img src="https://via.placeholder.com/220x220/cccccc/666666?text=Avatar" />
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="content-section">
+        {{ content }}
+      </div>
+    </div>
+
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
