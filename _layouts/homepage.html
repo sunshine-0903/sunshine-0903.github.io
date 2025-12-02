@@ -14,8 +14,7 @@
     <link rel="canonical" href="{{ site.canonical }}"/>
     {% endif %}
 
-    <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
-    <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
+    <link rel="icon" href="{{ site.favicon }}" type="image/png" />
     <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
 
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
@@ -26,13 +25,8 @@
     {% else %}
     <link rel="stylesheet" href="./assets/css/font.css">
     {% endif %}
-    {% if site.auto_dark_mode %}
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/publications.css">
-    {% else %}
     <link rel="stylesheet" href="./assets/css/style-no-dark-mode.css">
     <link rel="stylesheet" href="./assets/css/publications-no-dark-mode.css">
-    {% endif %}
 
     <style>
       /* 自定义样式 */
@@ -114,78 +108,57 @@
         font-size: 1.1rem;
         color: #444;
         display: block;
-        margin: 8px 0 20px 0; /* 增加与社交图标的间距 */
+        margin: 8px 0 20px 0;
       }
       
-/* 社交图标样式 - 更紧凑，下划线只在文字出现 */
-.social-icons {
-    margin: 8px 0 6px 0; /* 减小行前后的距离 */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.social-icons a {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: #555;
-    font-size: 0.9rem; /* 进一步减小文字大小 */
-    transition: all 0.2s ease;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    position: relative;
-}
-
-.social-icons a:hover {
-    background-color: transparent;
-    color: #2c82c9;
-    transform: none;
-}
-
-/* 下划线效果 - 只在文字下方，初始隐藏 */
-.social-icons a span {
-    position: relative;
-    display: inline-block;
-}
-
-/* 在span元素上添加下划线效果 */
-.social-icons a span::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px; /* 紧贴文字下方 */
-    left: 0;
-    background-color: currentColor;
-    transition: width 0.3s ease;
-}
-
-.social-icons a:hover span::after {
-    width: 100%; /* 悬停时下划线延长到文字宽度 */
-}
-
-.social-icons i {
-    margin-right: 4px; /* 进一步减小图标与文字的间距 */
-    font-size: 0.9rem; /* 减小图标大小 */
-    color: #666;
-}
-
-/* 不同社交图标的特定颜色 */
-.social-icons a:nth-child(1):hover { color: #4285F4; }
-.social-icons a:nth-child(1):hover i { color: #4285F4; }
-
-.social-icons a:nth-child(2):hover { color: #333; }
-.social-icons a:nth-child(2):hover i { color: #333; }
-
-.social-icons a:nth-child(3):hover { color: #0077b5; }
-.social-icons a:nth-child(3):hover i { color: #0077b5; }
-
-.social-icons a:nth-child(4):hover { color: #000; }
-.social-icons a:nth-child(4):hover i { color: #000; }
-    
+      /* 社交图标样式 */
+      .social-icons {
+        margin: 8px 0 6px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
       
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: #555;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        padding: 0;
+        background: none;
+        border-radius: 0;
+        position: relative;
+      }
+      
+      .social-icons a:hover {
+        background-color: transparent;
+        color: #2c82c9;
+        transform: none;
+      }
+      
+      .social-icons i {
+        margin-right: 4px;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      
+      /* 不同社交图标的特定颜色 */
+      .social-icons a:nth-child(1):hover { color: #4285F4; }
+      .social-icons a:nth-child(1):hover i { color: #4285F4; }
+      
+      
+      .social-icons a:nth-child(3):hover { color: #0077b5; }
+      .social-icons a:nth-child(3):hover i { color: #0077b5; }
+      
+      .social-icons a:nth-child(4):hover { color: #000; }
+      .social-icons a:nth-child(4):hover i { color: #000; }
+      
+      .social-icons a:nth-child(5):hover { color: #d44638; }
+      .social-icons a:nth-child(5):hover i { color: #d44638; }
+      
+    
       /* 下半部分：动态内容区 */
       .content-section {
         width: 100%;
@@ -196,160 +169,6 @@
       .content-section {
         font-size: 1.1rem;
         line-height: 1.7;
-      }
-      
-      /* 响应式设计 */
-      @media (max-width: 900px) {
-        .wrapper {
-          max-width: 95%;
-          padding: 15px;
-        }
-        
-        .top-section {
-          flex-direction: column-reverse;
-          align-items: center;
-          text-align: center;
-          min-height: auto;
-        }
-        
-        .info-left {
-          max-width: 100%;
-          padding-right: 0;
-          margin-top: 25px;
-        }
-        
-        .avatar-right {
-          margin-left: 0;
-          margin-top: 0;
-        }
-        
-        .avatar-right img {
-          width: 200px;
-          height: 200px;
-        }
-        
-        .name-title h1 {
-          margin: 0 0 20px 0;
-        }
-        
-        .bio-content {
-          padding-right: 0;
-          text-align: left;
-          font-size: 1.1rem;
-        }
-        
-        .social-icons {
-          justify-content: center;
-          gap: 15px;
-        }
-        
-        .social-icons a {
-          font-size: 0.95rem;
-        }
-      }
-      
-      @media (max-width: 600px) {
-        .wrapper {
-          padding: 10px;
-        }
-        
-        .name-title h1 {
-          font-size: 2.2rem;
-          margin: 0 0 18px 0;
-        }
-        
-        position {
-          font-size: 1.2rem;
-        }
-        
-        .avatar-right img {
-          width: 180px;
-          height: 180px;
-          border-width: 3px;
-        }
-        
-        .social-icons {
-          gap: 10px;
-          justify-content: flex-start;
-        }
-        
-        .social-icons a {
-          font-size: 0.9rem;
-        }
-        
-        .social-icons i {
-          margin-right: 5px;
-          font-size: 1rem;
-        }
-        
-        .bio-content {
-          font-size: 1.05rem;
-          line-height: 1.6;
-        }
-        
-        .content-section {
-          font-size: 1.05rem;
-        }
-      }
-      
-      /* 深色模式支持 */
-      @media (prefers-color-scheme: dark) {
-        .name-title h1 {
-          color: #f0f0f0;
-        }
-        
-        position {
-          color: #aaa;
-        }
-        
-        email {
-          color: #bbb;
-        }
-        
-        .affiliation a {
-          color: #5aa9ff;
-        }
-        
-        .affiliation a:hover {
-          color: #7bbdff;
-        }
-        
-        .bio-content {
-          color: #ddd;
-        }
-        
-        .social-icons a {
-          color: #ddd;
-        }
-        
-        .social-icons i {
-          color: #ccc;
-        }
-        
-        .social-icons a:hover {
-          color: #5aa9ff;
-        }
-        
-        .social-icons a:hover i {
-          color: #5aa9ff;
-        }
-        
-        .social-icons a::after {
-          background-color: #5aa9ff;
-        }
-        
-        .top-section {
-          border-bottom-color: #444;
-        }
-        
-        .avatar-right img {
-          border-color: #333;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .content-section {
-          color: #ddd;
-        }
       }
     </style>
   </head>
@@ -377,7 +196,7 @@
             {% endif %}
           </div>
           
-          <!-- 修改后的社交图标区域 - 无背景框，悬停下划线 -->
+          <!-- 社交图标区域 -->
           <div class="social-icons">
             {% if site.google_scholar %}
             <a href="{{ site.google_scholar }}" title="Google Scholar" target="_blank" rel="noopener">
@@ -385,11 +204,7 @@
             </a>  
             {% endif %}
 
-            {% if site.cv_link %}
-            <a href="{{ site.cv_link }}" title="CV" target="_blank" rel="noopener">
-              <i class="ai ai-cv"></i> CV
-            </a>
-            {% endif %}
+       
 
             {% if site.github_link %}
             <a href="{{ site.github_link }}" title="GitHub" target="_blank" rel="noopener">
@@ -409,18 +224,10 @@
             </a>
             {% endif %}
             
-            {% if site.email %}
-            <a href="mailto:{{ site.email }}" title="Email" rel="noopener">
-              <i class="fas fa-envelope"></i> Email
-            </a>
-            {% endif %}
+        
           </div>
           
-          <!-- 个人简介区域 -->
-          <!-- <div class="bio-content">
-            {{ site.bio | default: "这里可以添加个人简介。您可以在_config.yml中配置bio变量，或者直接在index.md中添加内容。" }}
-          </div> -->
-        </div>
+    
         
         <!-- 右侧：头像 -->
         <div class="avatar-right">
