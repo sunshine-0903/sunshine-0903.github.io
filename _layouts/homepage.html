@@ -34,79 +34,274 @@
     <link rel="stylesheet" href="./assets/css/publications-no-dark-mode.css">
     {% endif %}
 
+    <style>
+      /* 自定义样式覆盖 */
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        min-height: 100vh;
+      }
+      
+      /* 侧边栏 - 占右边三分之一空间，高度限制为页面高度的1/3 */
+      header {
+        width: 33.33%;
+        padding-left: 40px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* 垂直居中 */
+        align-items: center;
+        height: 33vh; /* 高度为视口高度的三分之一 */
+        min-height: 350px; /* 最小高度 */
+        max-height: 500px; /* 最大高度 */
+        top: 0;
+        margin-top: 20px;
+        border-left: 1px solid rgba(128, 128, 128, 0.2); /* 左侧分隔线 */
+      }
+      
+      /* 内容区域 - 占左边三分之二空间 */
+      section {
+        width: 66.67%;
+        padding-right: 40px;
+      }
+      
+      /* 头像容器 */
+      .avatar-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      
+      /* 放大头像 */
+      .image.avatar img {
+        width: 180px; /* 进一步放大 */
+        height: 180px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        object-fit: cover;
+      }
+      
+      .image.avatar img:hover {
+        transform: scale(1.08);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* 个人信息内容 */
+      .profile-content {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      
+      position {
+        font-size: 1.2rem !important;
+        display: block;
+        margin: 8px 0;
+        font-weight: 500;
+      }
+      
+      /* 社交媒体图标 */
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(128, 128, 128, 0.1);
+      }
+      
+      .social-icons a {
+        font-size: 1.4rem;
+        transition: all 0.3s ease;
+        color: inherit;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(128, 128, 128, 0.08);
+      }
+      
+      .social-icons a:hover {
+        transform: translateY(-3px);
+        background: rgba(128, 128, 128, 0.15);
+      }
+      
+      /* 联系信息 */
+      email {
+        font-size: 0.95rem;
+        word-break: break-all;
+        display: inline-block;
+        margin-top: 5px;
+        padding: 5px 10px;
+        background: rgba(128, 128, 128, 0.05);
+        border-radius: 4px;
+      }
+      
+      /* 响应式设计 */
+      @media (max-width: 992px) {
+        .wrapper {
+          flex-direction: column;
+        }
+        
+        header, section {
+          width: 100%;
+          padding: 0;
+          height: auto;
+          min-height: auto;
+          max-height: none;
+        }
+        
+        header {
+          border-left: none;
+          border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+          padding-bottom: 30px;
+          margin-bottom: 30px;
+          height: auto;
+          min-height: auto;
+        }
+        
+        section {
+          padding-right: 0;
+        }
+        
+        .image.avatar img {
+          width: 160px;
+          height: 160px;
+        }
+        
+        .profile-content {
+          max-width: 100%;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .wrapper {
+          padding: 20px 15px;
+        }
+        
+        .image.avatar img {
+          width: 140px;
+          height: 140px;
+        }
+        
+        h1 {
+          font-size: 1.7rem;
+        }
+        
+        position {
+          font-size: 1.1rem !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .image.avatar img {
+          width: 120px;
+          height: 120px;
+        }
+        
+        h1 {
+          font-size: 1.5rem;
+        }
+        
+        .social-icons {
+          gap: 10px;
+        }
+        
+        .social-icons a {
+          font-size: 1.2rem;
+          width: 32px;
+          height: 32px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
-      <header>
+      <section>
+        {{ content }}
         
-        {% if site.avatar %}
-        <a class="image avatar"><img src="{{ site.avatar }}" alt="avatar" /></a>
-        {% endif %}
-
-        <h1>{{ site.title }}</h1>
-
-        {% if site.position %}
-        <position style="font-size:1.10rem;">{{ site.position }}</position>
         <br>
+        
+        {% if site.enable_footnote %}
+        <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
         {% endif %}
-        {% if site.affiliation %}
-        <a href="{{ site.affiliation_link }}" rel="noopener"><autocolor>{{ site.affiliation }}</autocolor></a>
-        <br>
-        {% endif %}
-        {% if site.email %}
-        <email>{{ site.email }}</email>
-        {% endif %}
+      </section>
+      
+      <header>
+        <div class="avatar-container">
+          {% if site.avatar %}
+          <a class="image avatar"><img src="{{ site.avatar }}" alt="avatar" /></a>
+          {% endif %}
+          
+          <div class="profile-content">
+            <h1>{{ site.title }}</h1>
 
-        <br>
-        <br>
-        <div class="social-icons">
-        {% if site.google_scholar %}
-        <a style="margin: 0 5px 0 0" href="{{ site.google_scholar }}">
-          <i class="ai ai-google-scholar" style="font-size:1.2rem"></i>
-        </a>  
-        {% endif %}
+            {% if site.position %}
+            <position style="font-size:1.10rem;">{{ site.position }}</position>
+            <br>
+            {% endif %}
+            {% if site.affiliation %}
+            <a href="{{ site.affiliation_link }}" rel="noopener" style="font-size: 0.95rem;"><autocolor>{{ site.affiliation }}</autocolor></a>
+            <br>
+            {% endif %}
+            {% if site.email %}
+            <email>{{ site.email }}</email>
+            {% endif %}
 
-        {% if site.cv_link %}
-        <a style="margin: 0 5px 0 0" href="{{ site.cv_link }}">
-          <i class="ai ai-cv" style="font-size:1.3rem;"></i>
-        </a>
-        {% endif %}
+            <br>
+            <br>
+            <div class="social-icons">
+            {% if site.google_scholar %}
+            <a style="margin: 0 5px 0 0" href="{{ site.google_scholar }}">
+              <i class="ai ai-google-scholar" style="font-size:1.4rem"></i>
+            </a>  
+            {% endif %}
 
-        {% if site.github_link %}
-        <a style="margin: 0 5px 0 0" href="{{ site.github_link }}">
-          <i class="fab fa-github"></i>
-        </a>
-        {% endif %}
+            {% if site.cv_link %}
+            <a style="margin: 0 5px 0 0" href="{{ site.cv_link }}">
+              <i class="ai ai-cv" style="font-size:1.5rem;"></i>
+            </a>
+            {% endif %}
 
-        {% if site.linkedin %}
-        <a style="margin: 0 5px 0 0" href="{{ site.linkedin }}">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        {% endif %}
+            {% if site.github_link %}
+            <a style="margin: 0 5px 0 0" href="{{ site.github_link }}">
+              <i class="fab fa-github"></i>
+            </a>
+            {% endif %}
 
-        {% if site.twitter %}
-        <a style="margin: 0 0 0 0" href="{{ site.twitter }}">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        {% endif %}
+            {% if site.linkedin %}
+            <a style="margin: 0 5px 0 0" href="{{ site.linkedin }}">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            {% endif %}
+
+            {% if site.twitter %}
+            <a style="margin: 0 0 0 0" href="{{ site.twitter }}">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            {% endif %}
+            </div>
+          </div>
         </div>
-        <br>
 
       </header>
-      <section>
-
-      {{ content }}
-
-      <br>
-
-      {% if site.enable_footnote %}
-      <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
-      {% endif %}
-
-      </section>
-      <footer>
-        
-      </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
     {% if site.google_analytics %}
@@ -119,5 +314,31 @@
       ga('send', 'pageview');
     </script>
     {% endif %}
+    
+    <script>
+      // 动态调整侧边栏高度
+      document.addEventListener('DOMContentLoaded', function() {
+        function updateSidebarHeight() {
+          const header = document.querySelector('header');
+          const windowHeight = window.innerHeight;
+          
+          // 设置高度为视口高度的1/3
+          header.style.height = (windowHeight * 0.33) + 'px';
+          
+          // 确保最小和最大高度
+          if (windowHeight * 0.33 < 350) {
+            header.style.height = '350px';
+          } else if (windowHeight * 0.33 > 500) {
+            header.style.height = '500px';
+          }
+        }
+        
+        // 初始化
+        updateSidebarHeight();
+        
+        // 窗口大小变化时更新
+        window.addEventListener('resize', updateSidebarHeight);
+      });
+    </script>
   </body>
 </html>
