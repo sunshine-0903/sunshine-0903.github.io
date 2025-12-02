@@ -37,7 +37,7 @@
     <style>
       /* 自定义样式 */
       .wrapper {
-        max-width: 1100px; /* 减小整体宽度 */
+        max-width: 1100px;
         margin: 0 auto;
         padding: 20px;
       }
@@ -51,63 +51,57 @@
         margin-bottom: 40px;
         padding-bottom: 30px;
         border-bottom: 1px solid #eee;
-        min-height: 220px;
+        min-height: 240px; /* 增加最小高度 */
       }
       
       /* 左侧：个人信息区域 */
       .info-left {
         flex: 1;
         padding-right: 30px;
-        max-width: 68%; /* 稍微调整宽度比例 */
+        max-width: 65%; /* 调整宽度比例 */
       }
       
       /* 右侧：头像区域 */
       .avatar-right {
         flex: 0 0 auto;
         margin-left: 25px;
-        margin-top: 15px;
+        margin-top: 10px; /* 调整头像顶部间距 */
       }
       
-      /* 圆形头像样式 - 去除动画相关属性 */
+      /* 圆形头像样式 - 变大 */
       .avatar-right img {
-        width: 190px; /* 稍微减小头像大小 */
-        height: 190px;
+        width: 220px; /* 增大头像 */
+        height: 220px;
         border-radius: 50%;
         object-fit: cover;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         border: 4px solid #fff;
       }
       
-      /* 移除头像悬停效果 */
-      .avatar-right img:hover {
-        transform: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      }
-      
-      /* 名字和标题样式 */
+      /* 名字和标题样式 - 调整间距 */
       .name-title h1 {
-        margin: 0 0 15px 0;
-        font-size: 2.4rem; /* 稍微调整名字大小 */
+        margin: 0 0 25px 0; /* 增大名字和下面的间距 */
+        font-size: 2.5rem;
         font-weight: 700;
         color: #333;
         line-height: 1.2;
       }
       
       position {
-        font-size: 1.25rem; /* 增大字号 */
+        font-size: 1.3rem;
         color: #666;
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 5px; /* 减小与下面的间距 */
         font-weight: 500;
       }
       
       .affiliation {
-        margin: 15px 0;
+        margin: 8px 0; /* 减小间距 */
       }
       
       .affiliation a {
         text-decoration: none;
-        font-size: 1.15rem; /* 增大字号 */
+        font-size: 1.15rem;
         color: #2c82c9;
       }
       
@@ -117,30 +111,30 @@
       }
       
       email {
-        font-size: 1.1rem; /* 增大字号 */
+        font-size: 1.1rem;
         color: #444;
         display: block;
-        margin: 10px 0 20px 0;
+        margin: 8px 0 15px 0; /* 减小间距 */
       }
       
-      /* 社交图标样式 */
+      /* 社交图标样式 - 减小间距 */
       .social-icons {
-        margin: 20px 0 15px 0;
+        margin: 15px 0 12px 0; /* 减小上下间距 */
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px; /* 减小图标之间的间距 */
       }
       
       .social-icons a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 38px;
-        height: 38px;
+        width: 36px; /* 稍微减小图标大小 */
+        height: 36px;
         border-radius: 50%;
         background-color: #f0f0f0;
         color: #555;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         transition: all 0.2s ease;
         text-decoration: none;
       }
@@ -159,19 +153,19 @@
       .social-icons a:nth-child(4):hover { background-color: #0077b5; }
       .social-icons a:nth-child(5):hover { background-color: #000; }
       
-      /* 个人简介区域 - 增大正文字号 */
+      /* 个人简介区域 */
       .bio-content {
-        margin-top: 20px;
-        line-height: 1.7; /* 增加行高提高可读性 */
-        font-size: 1.15rem; /* 增大正文字号 */
+        margin-top: 15px; /* 减小与上面内容的间距 */
+        line-height: 1.7;
+        font-size: 1.15rem;
         color: #444;
         text-align: justify;
         padding-right: 15px;
       }
       
       .bio-content p {
-        margin-bottom: 18px; /* 增加段落间距 */
-        font-size: 1.15rem; /* 确保段落文字也增大 */
+        margin-bottom: 15px;
+        font-size: 1.15rem;
       }
       
       /* 下半部分：动态内容区 */
@@ -180,16 +174,16 @@
         margin-top: 20px;
       }
       
-      /* 增大内容区域的文字大小 */
+      /* 内容区域文字大小 */
       .content-section {
-        font-size: 1.1rem; /* 增大内容区域字号 */
+        font-size: 1.1rem;
         line-height: 1.7;
       }
       
       /* 响应式设计 */
       @media (max-width: 900px) {
         .wrapper {
-          max-width: 95%; /* 移动端使用更大比例宽度 */
+          max-width: 95%;
           padding: 15px;
         }
         
@@ -197,6 +191,7 @@
           flex-direction: column-reverse;
           align-items: center;
           text-align: center;
+          min-height: auto;
         }
         
         .info-left {
@@ -211,18 +206,23 @@
         }
         
         .avatar-right img {
-          width: 180px;
-          height: 180px;
+          width: 200px; /* 移动端头像大小 */
+          height: 200px;
+        }
+        
+        .name-title h1 {
+          margin: 0 0 20px 0; /* 移动端调整间距 */
         }
         
         .bio-content {
           padding-right: 0;
           text-align: left;
-          font-size: 1.1rem; /* 移动端稍小一点 */
+          font-size: 1.1rem;
         }
         
         .social-icons {
           justify-content: center;
+          gap: 10px; /* 移动端稍微增加间距 */
         }
       }
       
@@ -232,23 +232,24 @@
         }
         
         .name-title h1 {
-          font-size: 2rem;
+          font-size: 2.2rem;
+          margin: 0 0 18px 0;
         }
         
         position {
-          font-size: 1.15rem;
+          font-size: 1.2rem;
         }
         
         .avatar-right img {
-          width: 160px;
-          height: 160px;
+          width: 180px;
+          height: 180px;
           border-width: 3px;
         }
         
         .social-icons a {
-          width: 36px;
-          height: 36px;
-          font-size: 1rem;
+          width: 34px;
+          height: 34px;
+          font-size: 0.95rem;
         }
         
         .bio-content {
@@ -378,7 +379,7 @@
           {% if site.avatar %}
           <img src="{{ site.avatar }}" alt="{{ site.title }}'s avatar" />
           {% else %}
-          <img src="https://via.placeholder.com/190x190/cccccc/666666?text=Avatar" alt="Placeholder avatar" />
+          <img src="https://via.placeholder.com/220x220/cccccc/666666?text=Avatar" alt="Placeholder avatar" />
           {% endif %}
         </div>
       </div>
@@ -408,9 +409,7 @@
     {% endif %}
     
     <script>
-      // 简化JavaScript，移除所有动画效果
       document.addEventListener('DOMContentLoaded', function() {
-        // 社交图标的悬停效果
         const socialLinks = document.querySelectorAll('.social-icons a');
         socialLinks.forEach(link => {
           link.addEventListener('mouseenter', function() {
