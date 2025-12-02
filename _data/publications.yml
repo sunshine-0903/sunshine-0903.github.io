@@ -1,7 +1,7 @@
 main:
 
   - title: "OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot"
-    authors: Junhan Zhu, Hesong Wang, <strong>Mingluo Su<strong>, Zefang Wang, Huan Wang
+    authors: Junhan Zhu, Hesong Wang, <strong>Mingluo Su</strong>, Zefang Wang, Huan Wang
     pdf: https://arxiv.org/pdf/2510.06751
     conference_short: arXiv'2510
     code: https://github.com/Alrightlone/OBS-Diff
