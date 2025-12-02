@@ -1,63 +1,94 @@
-<style>
-  /* 自定义样式 */
-  .wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* 上半部分：个人信息区 - 左右分栏 */
-  .top-section {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #eee;
-    min-height: 240px;
-  }
-  
-  /* 左侧：个人信息区域 - 固定宽度 */
-  .info-left {
-    flex: 1;
-    padding-right: 30px;
-    max-width: 65%; /* 确保左侧区域有最大宽度限制 */
-  }
-  
-  /* 右侧：头像区域 - 固定宽度 */
-  .avatar-right {
-    flex: 0 0 auto;
-    margin-left: 25px;
-    margin-top: 10px;
-    width: 220px; /* 明确设置宽度 */
-  }
-  
-  /* 圆形头像样式 */
-  .avatar-right img {
-    width: 100%; /* 使用100%填充容器 */
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: 4px solid #fff;
-  }
-  
-  /* 确保下半部分有清晰的边界 */
-  .content-section {
-    width: 100%;
-    margin-top: 20px;
-    clear: both; /* 清除浮动 */
-  }
-  
-  /* 名字和标题样式 */
-  .name-title h1 {
-    margin: 0 0 30px 0;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #333;
-    line-height: 1.2;
-  }
-  
-  /* ... 其他样式保持不变 ... */
-</style>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <title>{{ site.title }} | {{site.affiliation}}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    {% if site.keywords %}
+    <meta name="keywords" content="{{ site.keywords }}">
+    {% endif %}
+    {% if site.canonical %}
+    <link rel="canonical" href="{{ site.canonical }}"/>
+    {% endif %}
+
+    <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
+    <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
+    <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
+
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    {% if site.font == "Sans Serif" %}
+    <link rel="stylesheet" href="./assets/css/font_sans_serif.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/font.css">
+    {% endif %}
+    {% if site.auto_dark_mode %}
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/publications.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/style-no-dark-mode.css">
+    <link rel="stylesheet" href="./assets/css/publications-no-dark-mode.css">
+    {% endif %}
+
+    <style>
+      .wrapper { max-width: 1100px; margin: 0 auto; padding: 20px; }
+      .top-section { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #eee; min-height: 240px; }
+      .info-left { flex: 1; padding-right: 30px; max-width: 65%; }
+      .avatar-right { flex: 0 0 auto; margin-left: 25px; margin-top: 10px; }
+      .avatar-right img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 4px solid #fff; }
+      .name-title h1 { margin: 0 0 30px 0; font-size: 3rem; font-weight: 700; color: #333; line-height: 1.2; }
+      position { font-size: 1.3rem; color: #666; display: block; margin-bottom: 4px; font-weight: 500; }
+      .affiliation a { text-decoration: none; font-size: 1.15rem; color: #2c82c9; }
+      email { font-size: 1.1rem; color: #444; display: block; margin: 8px 0 20px 0; }
+
+      .social-icons { margin: 8px 0 6px 0; display: flex; flex-wrap: wrap; gap: 20px; }
+      .social-icons a { display: inline-flex; align-items: center; text-decoration: none; color: #555; font-size: 0.9rem; transition: all 0.2s ease; }
+      .social-icons a span { position: relative; display: inline-block; }
+      .social-icons a span::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: currentColor; transition: width 0.3s ease; }
+      .social-icons a:hover span::after { width: 100%; }
+      .social-icons i { margin-right: 4px; font-size: 0.9rem; color: #666; }
+
+      /* Dark mode */
+      
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="top-section">
+        <div class="info-left">
+          <div class="name-title">
+            <h1>{{ site.title }}</h1>
+            {% if site.position %}<position>{{ site.position }}</position>{% endif %}
+            {% if site.affiliation %}<div class="affiliation"><a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a></div>{% endif %}
+            {% if site.email %}<email>{{ site.email }}</email>{% endif %}
+          </div>
+
+          <div class="social-icons">
+            {% if site.google_scholar %}<a href="{{ site.google_scholar }}" target="_blank"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
+            {% if site.github_link %}<a href="{{ site.github_link }}" target="_blank"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+            {% if site.linkedin %}<a href="{{ site.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>{% endif %}
+            {% if site.twitter %}<a href="{{ site.twitter }}" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>{% endif %}
+          </div>
+        </div>
+
+        <div class="avatar-right">
+          {% if site.avatar %}
+          <img src="{{ site.avatar }}" alt="{{ site.title }}'s avatar" />
+          {% else %}
+          <img src="https://via.placeholder.com/220x220/cccccc/666666?text=Avatar" />
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="content-section">
+        {{ content }}
+      </div>
+    </div>
+
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
