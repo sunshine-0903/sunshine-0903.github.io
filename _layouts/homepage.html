@@ -42,111 +42,229 @@
         padding: 20px;
       }
       
+      /* 上半部分：个人信息区 */
       .top-section {
+        position: relative;
         display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
+        justify-content: space-between;
+        align-items: flex-start;
         margin-bottom: 40px;
         padding-bottom: 30px;
         border-bottom: 1px solid #eee;
+        min-height: 220px;
       }
       
-      .avatar-container {
-        flex: 0 0 200px;
+      /* 左侧：个人信息区域 */
+      .info-left {
+        flex: 1;
+        padding-right: 30px;
+        max-width: 70%;
       }
       
-      .avatar-container img {
+      /* 右侧：头像区域 */
+      .avatar-right {
+        flex: 0 0 auto;
+        margin-left: 30px;
+      }
+      
+      .avatar-right img {
         width: 200px;
         height: 200px;
         border-radius: 10px;
         object-fit: cover;
-        float: left;
-        margin: 0 20px 15px 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: 3px solid #fff;
+        transition: transform 0.3s ease;
       }
       
-      .info-container {
-        flex: 1;
-        min-width: 300px;
+      .avatar-right img:hover {
+        transform: translateY(-5px);
       }
       
-      .name-title {
-        margin-bottom: 15px;
-      }
-      
+      /* 名字和标题样式 */
       .name-title h1 {
-        margin: 0 0 10px 0;
-        font-size: 2.2rem;
+        margin: 0 0 15px 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+        line-height: 1.2;
       }
       
       position {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: #666;
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        font-weight: 500;
       }
       
       .affiliation {
-        margin-bottom: 15px;
+        margin: 15px 0;
       }
       
       .affiliation a {
         text-decoration: none;
         font-size: 1.1rem;
-      }
-      
-      email {
-        font-size: 1rem;
-        color: #333;
-      }
-      
-      .social-icons {
-        margin: 20px 0;
-      }
-      
-      .social-icons a {
-        display: inline-block;
-        margin-right: 12px;
-        font-size: 1.3rem;
-        color: #555;
+        color: #2c82c9;
         transition: color 0.3s;
       }
       
-      .social-icons a:hover {
-        color: #0077cc;
+      .affiliation a:hover {
+        color: #1a5f9e;
       }
       
+      email {
+        font-size: 1.05rem;
+        color: #444;
+        display: block;
+        margin: 10px 0 20px 0;
+      }
+      
+      /* 社交图标样式 */
+      .social-icons {
+        margin: 25px 0 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        color: #555;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      
+      .social-icons a:hover {
+        background-color: #2c82c9;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(44, 130, 201, 0.3);
+      }
+      
+      /* 个人简介区域 */
+      .bio-content {
+        margin-top: 25px;
+        line-height: 1.6;
+        font-size: 1.05rem;
+        color: #444;
+        text-align: justify;
+        padding-right: 20px;
+      }
+      
+      .bio-content p {
+        margin-bottom: 15px;
+      }
+      
+      /* 下半部分：动态内容区 */
       .content-section {
         width: 100%;
+        margin-top: 20px;
       }
       
       /* 响应式设计 */
-      @media (max-width: 768px) {
+      @media (max-width: 900px) {
         .top-section {
-          flex-direction: column;
-          gap: 20px;
-        }
-        
-        .avatar-container {
+          flex-direction: column-reverse;
+          align-items: center;
           text-align: center;
         }
         
-        .avatar-container img {
-          float: none;
-          margin: 0 auto 20px auto;
+        .info-left {
+          max-width: 100%;
+          padding-right: 0;
+          margin-top: 25px;
         }
         
-        .name-title h1 {
-          text-align: center;
-          font-size: 1.8rem;
+        .avatar-right {
+          margin-left: 0;
         }
         
-        position, .affiliation, email {
-          text-align: center;
+        .avatar-right img {
+          width: 180px;
+          height: 180px;
+        }
+        
+        .bio-content {
+          padding-right: 0;
+          text-align: left;
         }
         
         .social-icons {
-          text-align: center;
+          justify-content: center;
+        }
+      }
+      
+      @media (max-width: 600px) {
+        .name-title h1 {
+          font-size: 2rem;
+        }
+        
+        position {
+          font-size: 1.1rem;
+        }
+        
+        .avatar-right img {
+          width: 150px;
+          height: 150px;
+        }
+        
+        .social-icons a {
+          width: 36px;
+          height: 36px;
+          font-size: 1.1rem;
+        }
+      }
+      
+      /* 深色模式支持 */
+      @media (prefers-color-scheme: dark) {
+        .name-title h1 {
+          color: #f0f0f0;
+        }
+        
+        position {
+          color: #aaa;
+        }
+        
+        email {
+          color: #bbb;
+        }
+        
+        .affiliation a {
+          color: #5aa9ff;
+        }
+        
+        .affiliation a:hover {
+          color: #7bbdff;
+        }
+        
+        .bio-content {
+          color: #ddd;
+        }
+        
+        .social-icons a {
+          background-color: #333;
+          color: #ddd;
+        }
+        
+        .social-icons a:hover {
+          background-color: #2c82c9;
+          color: white;
+        }
+        
+        .top-section {
+          border-bottom-color: #444;
+        }
+        
+        .avatar-right img {
+          border-color: #333;
         }
       }
     </style>
@@ -155,15 +273,8 @@
     <div class="wrapper">
       <!-- 上半部分：个人信息区 -->
       <div class="top-section">
-        <!-- 左侧：头像区域 -->
-        <div class="avatar-container">
-          {% if site.avatar %}
-          <img src="{{ site.avatar }}" alt="avatar" />
-          {% endif %}
-        </div>
-        
-        <!-- 右侧：个人信息（文字环绕头像） -->
-        <div class="info-container">
+        <!-- 左侧：个人信息 -->
+        <div class="info-left">
           <div class="name-title">
             <h1>{{ site.title }}</h1>
             
@@ -184,40 +295,49 @@
           
           <div class="social-icons">
             {% if site.google_scholar %}
-            <a href="{{ site.google_scholar }}" title="Google Scholar">
+            <a href="{{ site.google_scholar }}" title="Google Scholar" target="_blank" rel="noopener">
               <i class="ai ai-google-scholar"></i>
             </a>  
             {% endif %}
 
             {% if site.cv_link %}
-            <a href="{{ site.cv_link }}" title="CV">
+            <a href="{{ site.cv_link }}" title="CV" target="_blank" rel="noopener">
               <i class="ai ai-cv"></i>
             </a>
             {% endif %}
 
             {% if site.github_link %}
-            <a href="{{ site.github_link }}" title="GitHub">
+            <a href="{{ site.github_link }}" title="GitHub" target="_blank" rel="noopener">
               <i class="fab fa-github"></i>
             </a>
             {% endif %}
 
             {% if site.linkedin %}
-            <a href="{{ site.linkedin }}" title="LinkedIn">
+            <a href="{{ site.linkedin }}" title="LinkedIn" target="_blank" rel="noopener">
               <i class="fab fa-linkedin"></i>
             </a>
             {% endif %}
 
             {% if site.twitter %}
-            <a href="{{ site.twitter }}" title="Twitter">
+            <a href="{{ site.twitter }}" title="Twitter" target="_blank" rel="noopener">
               <i class="fab fa-x-twitter"></i>
             </a>
             {% endif %}
           </div>
           
-          <!-- 文字环绕内容区域 -->
+          <!-- 个人简介区域 -->
           <div class="bio-content">
             {{ site.bio | default: "这里可以添加个人简介。您可以在_config.yml中配置bio变量，或者直接在index.md中添加内容。" }}
           </div>
+        </div>
+        
+        <!-- 右侧：头像 -->
+        <div class="avatar-right">
+          {% if site.avatar %}
+          <img src="{{ site.avatar }}" alt="{{ site.title }}'s avatar" />
+          {% else %}
+          <img src="https://via.placeholder.com/200x200/cccccc/666666?text=Avatar" alt="Placeholder avatar" />
+          {% endif %}
         </div>
       </div>
       
@@ -246,14 +366,19 @@
     {% endif %}
     
     <script>
-      // 确保图片加载后重新布局
+      // 头像加载动画
       document.addEventListener('DOMContentLoaded', function() {
-        const avatar = document.querySelector('.avatar-container img');
+        const avatar = document.querySelector('.avatar-right img');
         if (avatar) {
-          avatar.onload = function() {
-            // 触发重排以确保文字环绕正确
-            document.querySelector('.bio-content').style.display = 'block';
-          };
+          // 添加加载动画
+          avatar.style.opacity = '0';
+          avatar.style.transform = 'translateY(20px)';
+          
+          setTimeout(() => {
+            avatar.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            avatar.style.opacity = '1';
+            avatar.style.transform = 'translateY(0)';
+          }, 100);
         }
       });
     </script>
