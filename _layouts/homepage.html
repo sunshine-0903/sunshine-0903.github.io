@@ -81,7 +81,7 @@
       /* 名字和标题样式 */
       .name-title h1 {
         margin: 0 0 30px 0;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: 700;
         color: #333;
         line-height: 1.2;
@@ -96,7 +96,7 @@
       }
       
       .affiliation {
-        margin: 6px 0;
+        margin: 3px 0;
       }
       
       .affiliation a {
@@ -114,15 +114,15 @@
         font-size: 1.1rem;
         color: #444;
         display: block;
-        margin: 8px 0 15px 0;
+        margin: 8px 0 20px 0; /* 增加与社交图标的间距 */
       }
       
-      /* 社交图标样式 - 改为图标+文字 */
+      /* 社交图标样式 - 去掉背景框，悬停下划线 */
       .social-icons {
         margin: 15px 0 12px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 15px; /* 增加间距以适应文字 */
+        gap: 20px; /* 增加间距 */
       }
       
       .social-icons a {
@@ -132,28 +132,71 @@
         color: #555;
         font-size: 1rem;
         transition: all 0.2s ease;
-        padding: 8px 12px;
-        border-radius: 6px;
-        background-color: #f5f5f5;
+        padding: 4px 0; /* 只保留垂直内边距 */
+        background: none; /* 去掉背景 */
+        border-radius: 0; /* 去掉圆角 */
+        position: relative; /* 为下划线做准备 */
       }
       
+      /* 移除悬停时的背景色变换 */
       .social-icons a:hover {
+        background-color: transparent; /* 保持透明背景 */
+        color: #2c82c9; /* 悬停时变色 */
+        transform: none; /* 去掉上浮效果 */
+      }
+      
+      /* 下划线效果 */
+      .social-icons a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
         background-color: #2c82c9;
-        color: white;
-        transform: translateY(-2px);
+        transition: width 0.3s ease;
+      }
+      
+      .social-icons a:hover::after {
+        width: 100%;
       }
       
       .social-icons i {
         margin-right: 8px;
         font-size: 1.1rem;
+        color: #666; /* 图标使用深灰色 */
       }
       
       /* 不同社交图标的特定颜色 */
-      .social-icons a:nth-child(1):hover { background-color: #4285F4; } /* Google Scholar */
-      .social-icons a:nth-child(2):hover { background-color: #6c757d; } /* CV */
-      .social-icons a:nth-child(3):hover { background-color: #333; } /* GitHub */
-      .social-icons a:nth-child(4):hover { background-color: #0077b5; } /* LinkedIn */
-      .social-icons a:nth-child(5):hover { background-color: #000; } /* Twitter */
+      .social-icons a:hover i {
+        color: #2c82c9; /* 悬停时图标变色 */
+      }
+      
+      .social-icons a:nth-child(1):hover, 
+      .social-icons a:nth-child(1):hover i { color: #4285F4; } /* Google Scholar */
+      
+      .social-icons a:nth-child(2):hover, 
+      .social-icons a:nth-child(2):hover i { color: #6c757d; } /* CV */
+      
+      .social-icons a:nth-child(3):hover, 
+      .social-icons a:nth-child(3):hover i { color: #333; } /* GitHub */
+      
+      .social-icons a:nth-child(4):hover, 
+      .social-icons a:nth-child(4):hover i { color: #0077b5; } /* LinkedIn */
+      
+      .social-icons a:nth-child(5):hover, 
+      .social-icons a:nth-child(5):hover i { color: #000; } /* Twitter */
+      
+      .social-icons a:nth-child(6):hover, 
+      .social-icons a:nth-child(6):hover i { color: #d44638; } /* Email */
+      
+      /* 更新下划线颜色 */
+      .social-icons a:nth-child(1):hover::after { background-color: #4285F4; }
+      .social-icons a:nth-child(2):hover::after { background-color: #6c757d; }
+      .social-icons a:nth-child(3):hover::after { background-color: #333; }
+      .social-icons a:nth-child(4):hover::after { background-color: #0077b5; }
+      .social-icons a:nth-child(5):hover::after { background-color: #000; }
+      .social-icons a:nth-child(6):hover::after { background-color: #d44638; }
       
       /* 个人简介区域 */
       .bio-content {
@@ -224,11 +267,10 @@
         
         .social-icons {
           justify-content: center;
-          gap: 12px;
+          gap: 15px;
         }
         
         .social-icons a {
-          padding: 6px 10px;
           font-size: 0.95rem;
         }
       }
@@ -254,12 +296,11 @@
         }
         
         .social-icons {
-          gap: 8px;
+          gap: 10px;
           justify-content: flex-start;
         }
         
         .social-icons a {
-          padding: 5px 8px;
           font-size: 0.9rem;
         }
         
@@ -305,12 +346,23 @@
         }
         
         .social-icons a {
-          background-color: #333;
           color: #ddd;
         }
         
+        .social-icons i {
+          color: #ccc;
+        }
+        
         .social-icons a:hover {
-          color: white;
+          color: #5aa9ff;
+        }
+        
+        .social-icons a:hover i {
+          color: #5aa9ff;
+        }
+        
+        .social-icons a::after {
+          background-color: #5aa9ff;
         }
         
         .top-section {
@@ -352,7 +404,7 @@
             {% endif %}
           </div>
           
-          <!-- 修改后的社交图标区域 -->
+          <!-- 修改后的社交图标区域 - 无背景框，悬停下划线 -->
           <div class="social-icons">
             {% if site.google_scholar %}
             <a href="{{ site.google_scholar }}" title="Google Scholar" target="_blank" rel="noopener">
@@ -434,15 +486,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const socialLinks = document.querySelectorAll('.social-icons a');
-        socialLinks.forEach(link => {
-          link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-          });
-          
-          link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-          });
-        });
+        // 移除原有的悬停效果代码，让CSS处理所有效果
       });
     </script>
   </body>
