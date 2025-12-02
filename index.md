@@ -8,12 +8,6 @@ I am Mingluo Su, a visiting student in [ENCODE Lab](https://westlake-encode-lab.
 
 My research interests include model compression.
 
-## Research Interests
-
-- **Computer Vision:** image recognition, image generation, video captioning
-- **Machine Learning:** meta-learning, incremental learning, transfer learning
-
-
 {% include_relative _includes/publications.md %}
 
 
