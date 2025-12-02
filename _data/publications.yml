@@ -1,7 +1,7 @@
 main:
 
   - title: "OBS-Diff: Accurate Pruning For Diffusion Models in One-Shot"
-    authors: Junhan Zhu, Hesong Wang, <strong>Mingluo Su</strong>, Zefang Wang, Huan Wang
+    authors: Junhan Zhu, Hesong Wang, <strong>Mingluo Su</strong>, Zefang Wang, Huan Wang*
     pdf: https://arxiv.org/pdf/2510.06751
     conference_short: arXiv'2510
     code: https://github.com/Alrightlone/OBS-Diff
@@ -9,7 +9,7 @@ main:
     image: ./assets/img/teaser_example.png
 
   - title: A Novel Feature Extraction and Land Cover Classification Method Based on Tensor Algebra for Multi-band SAR Imagery
-    authors: <strong>Mingluo Su</strong>, Huaping Xu(*Corresponding authors)
+    authors: <strong>Mingluo Su</strong>, Huaping Xu*
     conference_short: ICSIDP
     conference: International Conference on Signal, Information and Data Processing <strong>(ICSIDP)</strong>, 2024.
     pdf: https://ieeexplore.ieee.org/abstract/document/10869204
